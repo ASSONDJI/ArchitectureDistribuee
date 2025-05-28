@@ -9,49 +9,27 @@ import lombok.Setter;
 @Setter
 @Table(name = "CUSTUMER")
 public class CustumerModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_client;
 
     @Column(name = "NOM")
     private String nom_client;
+
     @Column(name = "PRENOM")
     private String prenom_client;
+
     @Column(name = "ADRESSE")
     private String add_client;
 
-public CustumerModel() {}
-
-    public long getId_client() {
-        return id_client;
+    public CustumerModel() {
     }
 
-    public void setId_client(long id_client) {
+    public CustumerModel(long id_client, String nom_client, String prenom_client, String add_client) {
         this.id_client = id_client;
-    }
-
-    public String getNom_client() {
-        return nom_client;
-    }
-
-    public void setNom_client(String nom_client) {
         this.nom_client = nom_client;
-    }
-
-    public String getPrenom_client() {
-        return prenom_client;
-    }
-
-    public void setPrenom_client(String prenom_client) {
         this.prenom_client = prenom_client;
-    }
-    public String getAdd_client() {
-        return add_client;
-    }
-
-    public void setAdd_client(String add_client) {
         this.add_client = add_client;
     }
-
-
 }
