@@ -2,29 +2,22 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-
+        <module name="Eureka-Serveur" />
+        <module name="demo" />
+        <module name="demo (1)" />
+      </profile>
+    </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Bill-Service" options="-parameters" />
-      <module name="Category-Service" options="-parameters" />
-      <module name="Custumer-Service" options="-parameters" />
       <module name="Eureka-Serveur" options="-parameters" />
       <module name="Gateway-Server" options="-parameters" />
-      <module name="Notification-Service" options="-parameters" />
-      <module name="Order-Service" options="-parameters" />
-      <module name="Payment-Service" options="-parameters" />
-      <module name="Product-Service" options="-parameters" />
+      <module name="demo" options="-parameters" />
+      <module name="demo (1)" options="-parameters" />
     </option>
   </component>
 </project>

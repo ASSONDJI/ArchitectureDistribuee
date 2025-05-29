@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/Custumer-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Eureka-Server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Gateway-Server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Item-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Notification-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Order-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Payment-Service/src/main/java" charset="UTF-8" />
