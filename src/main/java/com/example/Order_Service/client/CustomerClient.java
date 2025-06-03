@@ -14,7 +14,7 @@ public class CustomerClient {
     }
 
     /**
-     * 🔎 Récupère les infos d’un client à partir de son ID depuis le Customer-Service.
+     * Récupère les infos d’un client à partir de son ID depuis le Customer-Service.
      * @param id identifiant du client
      * @return CustomerDTO contenant les infos ou null si non trouvé
      */

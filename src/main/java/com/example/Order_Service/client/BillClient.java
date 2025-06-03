@@ -17,7 +17,7 @@ public class BillClient {
     }
 
     public BillResponseDTO getBillById(Long billId) {
-        String url = "http://localhost:8082/api/bills/" + billId; // 🛠️ adapte le port si besoin
+        String url = "http://localhost:8082/api/bills/" + billId;
         return restTemplate.getForObject(url, BillResponseDTO.class);
     }
 

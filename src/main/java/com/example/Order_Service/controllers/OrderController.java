@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 🎯 Contrôleur principal pour gérer les opérations sur les commandes.
+ * Contrôleur principal pour gérer les opérations sur les commandes.
  * Les données enrichies proviennent de Customer-Service, Product-Service et Bill-Service.
  */
 
@@ -26,7 +26,7 @@ public class OrderController {
     }
 
     /**
-     * ✅ Créer une commande.
+     * Créer une commande.
      * Appelle en cascade les services externes :
      * - CustomerService pour vérifier le client
      * - ProductService pour valider les produits
@@ -38,7 +38,7 @@ public class OrderController {
     }
 
     /**
-     * ✅ Obtenir les détails complets d’une commande par son ID :
+     * Obtenir les détails complets d’une commande par son ID :
      * - Informations du client
      * - Produits commandés
      * - Montant total
@@ -50,7 +50,7 @@ public class OrderController {
     }
 
     /**
-     * ✅ Obtenir la liste de toutes les commandes existantes,
+     * Obtenir la liste de toutes les commandes existantes,
      * enrichies avec les informations liées.
      */
     @GetMapping
@@ -59,7 +59,7 @@ public class OrderController {
     }
 
     /**
-     * ✅ Supprimer une commande de la base.
+     * Supprimer une commande de la base.
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
@@ -68,7 +68,7 @@ public class OrderController {
     }
 
     /**
-     * ✅ Modifier une commande existante :
+     *  Modifier une commande existante :
      * - Valide les données d’entrée
      * - Met à jour les produits, le statut, etc.
      * - Met à jour la facture si nécessaire

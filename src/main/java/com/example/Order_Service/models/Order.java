@@ -36,6 +36,9 @@ public class Order {
     public Long getBillId() {
         return billId;
     }
+    public void setBillId(Long billId) {
+        this.billId = billId;
+    }
 
     public Long getId() {
         return id;

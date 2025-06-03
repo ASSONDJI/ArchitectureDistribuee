@@ -13,7 +13,7 @@ public class ProductClient {
     }
 
     /**
-     * 🔍 Récupère les informations d’un produit par son ID depuis Product-Service
+     *  Récupère les informations d’un produit par son ID depuis Product-Service
      * @param productId l'identifiant du produit
      * @return ProductDTO ou null si non trouvé
      */
@@ -22,7 +22,7 @@ public class ProductClient {
         try {
             return restTemplate.getForObject(url, ProductDTO.class);
         } catch (Exception e) {
-            return null; // ou logger l’erreur si besoin
+            return null;
         }
     }
 }

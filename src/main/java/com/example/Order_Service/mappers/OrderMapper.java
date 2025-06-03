@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * ✅ OrderMapper
+ * OrderMapper
  * Classe utilitaire pour convertir les entités Order DTOs.
  */
 public class OrderMapper {
 
     /**
-     * 🔁 Convertit un DTO de création de commande vers l'entité Order.
+     * Convertit un DTO de création de commande vers l'entité Order.
      *
      * @param dto données de la requête POST
      * @return Order prêt à être persisté
@@ -47,7 +47,7 @@ public class OrderMapper {
     }
 
     /**
-     * 🔁 Convertit une entité Order + CustomerDTO en OrderResponseDTO
+     * Convertit une entité Order + CustomerDTO en OrderResponseDTO
      *
      * @param order    entité persistée
      * @param customer infos client depuis Customer-Service
@@ -83,7 +83,7 @@ public class OrderMapper {
 
     public static BillRequestDTO toBillRequestDTO(Order order) {
         BillRequestDTO bill = new BillRequestDTO();
-        bill.setOrderId(order.getId()); // ⚠️ peut être null avant la sauvegarde
+        bill.setOrderId(order.getId());
         bill.setCustomerId(order.getCustomerId());
         bill.setAmount(order.getTotalPrice());
 

@@ -1,11 +1,29 @@
 package com.example.Order_Service.dto.item;
 
+import com.example.Order_Service.dto.customer.CustomerDTO;
+
 import java.time.LocalDate;
 import java.util.List;
 
+
 public class OrderResponseDTO {
+
+    private CustomerDTO customer;
     private Long id;
     private Long customerId;
+
+    public CustomerDTO getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerDTO customer) {
+        this.customer = customer;
+    }
+
+    public void setBillId(String billId) {
+        this.billId = billId;
+    }
+
     private String customerFirstName;
     private String customerLastName;
     private String customerAddress;
@@ -47,4 +65,6 @@ public class OrderResponseDTO {
 
     public List<OrderItemResponseDTO> getItems() { return items; }
     public void setItems(List<OrderItemResponseDTO> items) { this.items = items; }
+
+
 }

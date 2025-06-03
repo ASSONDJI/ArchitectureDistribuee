@@ -33,4 +33,11 @@ public class GlobalExceptionHandler {
         response.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
+    @ExceptionHandler(StockUnavailableException.class)
+    public ResponseEntity<?> handleStockUnavailable(StockUnavailableException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", ex.getMessage()));
+    }
+
+
 }

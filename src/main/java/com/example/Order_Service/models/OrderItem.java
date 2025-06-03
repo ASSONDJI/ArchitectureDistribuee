@@ -11,9 +11,9 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long productId; // Référence au produit du microservice Product
+    private Long productId;
 
-    private String productName; // Pour affichage uniquement (non stocké si logique stricte)
+    private String productName;
 
     private int quantity;
 

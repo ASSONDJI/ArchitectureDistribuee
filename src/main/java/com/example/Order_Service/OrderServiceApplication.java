@@ -16,7 +16,7 @@ public class OrderServiceApplication {
 		SpringApplication.run(OrderServiceApplication.class, args);
 	}
 
-	// ✅ Ajout du RestTemplate comme Bean pour l'injection
+	// Ajout du RestTemplate comme Bean pour l'injection
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();

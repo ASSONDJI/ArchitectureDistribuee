@@ -2,12 +2,16 @@ package com.example.Order_Service.services;
 
 import com.example.Order_Service.client.BillClient;
 import com.example.Order_Service.client.CustomerClient;
+import com.example.Order_Service.client.ProductClient;
 import com.example.Order_Service.dto.bill.BillRequestDTO;
-import com.example.Order_Service.dto.bill.BillResponseDTO;
 import com.example.Order_Service.dto.customer.CustomerDTO;
 import com.example.Order_Service.dto.item.OrderResponseDTO;
 import com.example.Order_Service.dto.order.OrderCreateDTO;
+import com.example.Order_Service.dto.order.OrderItemCreateDTO;
+import com.example.Order_Service.dto.product.ProductDTO;
 import com.example.Order_Service.exceptions.OrderNotFoundException;
+import com.example.Order_Service.exceptions.ProductNotFoundException;
+import com.example.Order_Service.exceptions.StockUnavailableException;
 import com.example.Order_Service.mappers.OrderMapper;
 import com.example.Order_Service.models.Order;
 import com.example.Order_Service.models.OrderItem;
@@ -21,13 +25,15 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final CustomerClient customerClient;
     private final BillClient billClient;
+    private final ProductClient productClient;
 
     public OrderServiceImpl(OrderRepository orderRepository,
                             CustomerClient customerClient,
-                            BillClient billClient) {
+                            BillClient billClient,ProductClient productClient ) {
         this.orderRepository = orderRepository;
         this.customerClient = customerClient;
         this.billClient = billClient;
+        this.productClient=productClient;
     }
 
     @Override
@@ -55,28 +61,44 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseDTO createOrder(OrderCreateDTO dto) {
-        // Étape 1 : Conversion du DTO vers entité
+        //  Conversion du DTO vers entité
         Order order = OrderMapper.toEntity(dto);
 
-        // Étape 2 : Vérification que le client existe via Customer-Service
+        //  Vérification que le client existe via Customer-Service
         CustomerDTO customer = customerClient.getCustomerById(order.getCustomerId());
         // L’exception sera levée automatiquement dans le client si le client est introuvable
+        //verification du stock
+        for (OrderItemCreateDTO item : dto.getItems()) {
+            ProductDTO product = productClient.getProductById(item.getProductId());
 
-        // Étape 3 : Calcul du prix total
+            if (product == null) {
+                throw new ProductNotFoundException(item.getProductId());
+            }
+
+            if (item.getQuantity() > product.getStock()) {
+                throw new StockUnavailableException(
+                        "Stock insuffisant pour le produit " + product.getName() +
+                                " (disponible : " + product.getStock() + ", demandé : " + item.getQuantity() + ")"
+                );
+            }
+        }
+
+
+        //  Calcul du prix total
         double totalPrice = order.getItems().stream()
                 .mapToDouble(item -> item.getQuantity() * item.getUnitPrice())
                 .sum();
         order.setTotalPrice(totalPrice);
 
-        // Étape 4 : Génération de la facture via Bill-Service
+        //  Génération de la facture via Bill-Service
         BillRequestDTO billRequest = OrderMapper.toBillRequestDTO(order);
         Long billId = billClient.createBill(billRequest);
         order.setBillId(billId);
 
-        // Étape 5 : Enregistrement de la commande
+        //  Enregistrement de la commande
         orderRepository.save(order);
 
-        // Étape 6 : Transformation vers DTO enrichi avec infos client
+        // Transformation vers DTO enrichi avec infos client
         return OrderMapper.toResponseDTO(order, customer);
     }
 
